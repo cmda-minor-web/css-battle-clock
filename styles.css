@@ -1,0 +1,360 @@
+@font-face {
+  src:url("fonts/Saira-var.ttf");
+  font-family:"saira var";
+}
+
+@font-face {
+  src:url("fonts/SairaCondensed-Regular.ttf");
+  font-family:"saira con";
+  font-weight:400;
+}
+
+@font-face {
+  src:url("fonts/SairaCondensed-Bold.ttf");
+  font-family:"saira con";
+  font-weight:700;
+}
+
+
+
+
+
+/********************/
+/* MARK: REMEDY-ISH */
+/********************/
+
+*, *::before, *::after {
+  box-sizing:border-box;
+}
+
+html {
+  font-family: "saira var", serif;
+  font-size:clamp(1em, 5vw, 2em);
+
+  @media(prefers-color-scheme:dark) {
+    filter:invert(1);
+  }
+}
+
+body {
+  .invert & {
+    filter:invert(1);
+  }
+}
+
+h1, h2 {
+  margin:0;
+  font-size:1.5rem;
+}
+
+p {
+  margin:0;
+  font-size:1.5rem;
+}
+
+label {
+  font-size:1.5rem;
+}
+
+input, button, select {
+  padding:.25em;
+  
+  appearance: none;
+  background-color:canvas;
+  border:solid .1rem canvastext;
+  border-radius:0;
+  
+  font-family:inherit;
+  font-size:1.5rem;
+  text-align:center;
+
+  cursor:pointer;
+}
+
+input {
+  width:4.5em;
+}
+
+button {
+  background-color:canvastext;
+  color:canvas;
+  border-radius:2em;
+  corner-shape:squircle;
+
+  &[type="reset"] {
+    font-size:max(16px, .67rem);
+  }
+}
+
+select, ::picker(select) {
+  appearance: base-select;
+}
+
+select {
+  gap:.2em;
+  align-items:baseline;
+  justify-content:space-between;
+
+  &::picker-icon {
+    width:.3em;
+    height:.6em;
+    background-color:currentColor;
+    content:"";
+    margin:0;
+    clip-path: polygon(50% 0, 100% 45%, 50% 45%, 50% 55%, 100% 55%, 50% 100%, 0 55%, 50% 55%, 50% 45%, 0 45%);
+  }
+}
+
+option {
+  padding:.25em;
+  gap:.2em;
+
+  &::checkmark {
+    content:"•";
+  }
+}
+
+
+
+
+
+/**********************/
+/* MARK: BASIS LAYOUT */
+/**********************/
+
+body {
+  margin:0;
+  background-color:canvas;
+}
+
+main {
+  height:100dvh;
+  overflow-y:clip;
+  overflow-x:hidden;
+
+  display:flex;
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
+}
+
+section {
+  flex-shrink:0;
+  width:100dvw;
+  height:100dvh;
+  scroll-snap-align:start;
+  overflow-y:auto;
+}
+
+
+
+
+
+/******************/
+/* MARK: SETTINGS */
+/******************/
+
+section#settings {
+
+  display:grid;
+  place-content:safe center;
+  padding:1em;
+  gap:1em;
+
+  /* FORM */
+
+  form {
+    display:grid;
+    grid-template-columns:max-content auto;
+    gap:1em;
+    padding:1em;
+  }
+
+  h1 {
+    grid-column:1/-1;
+    text-align:center;
+    padding-block:.5em;
+
+    /* logo credits:  https://cssbattle.dev/ */
+    background-image:
+      linear-gradient(color-mix(in srgb, canvas 90%, #0000) 0 0),
+      url("images/logo.svg");
+    background-size: 
+      100% 1em,
+      contain;
+    background-repeat:no-repeat;
+    background-position: center;
+  }
+
+  label {
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:subgrid;
+    align-items:baseline;
+  }
+
+  button {
+    grid-column:1/-1;
+  }
+}
+
+
+
+
+
+/***************/
+/* MARK: TIMER */
+/***************/
+
+@property --p {
+  syntax:"<number>";
+  inherits:true;
+  initial-value:0;
+}
+
+.timer {
+  display:grid;
+  grid-template-rows:max-content 6fr minmax(0, 1fr) max-content;
+  grid-template-areas:
+    "battle"
+    "timer "
+    ".     "
+    "reset ";
+  padding:1em;
+  align-items:center;
+
+  header {
+    grid-area:battle;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:.33em;
+    justify-self:center;
+    padding:.5em 1em; 
+
+    background-color:canvas;
+    border-radius:2em;
+    corner-shape:squircle;
+
+    mix-blend-mode:exclusion;
+
+    html.ready & {
+      opacity:0;
+    }
+  }
+
+  h2, p {
+    color:canvas;
+    text-align:center;
+    font-weight:400;
+
+    text-box: trim-both cap alphabetic;
+    
+    mix-blend-mode:difference;
+
+    user-select:none;
+  }
+
+  strong {
+    color:lime;
+  }
+
+  p:has(time) {
+    grid-area:timer;
+  }
+
+  time {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:400;
+    font-size:min(20em,40vw,65vh);
+    font-family: "saira con", serif;
+    font-variant-numeric: slashed-zero;
+    line-height:1;
+     
+    span {
+      
+      text-box: trim-both cap alphabetic;
+      line-height:1;
+
+      html:not(.ready) & {
+        width:1ch;
+      }
+
+      html:not(.ready) &:nth-of-type(3) {
+        text-box: trim-both ex alphabetic;
+        width:fit-content;
+      }
+    }     
+  }
+
+  button {
+    grid-area:reset;
+   justify-self:start;
+  }
+}
+
+
+
+
+
+/**************/
+/* MARK: PLAN */
+/**************/
+
+@keyframes --plannen-ani {
+  0% {
+    --p:1;
+  }
+  100% {
+    --p:0;
+  }
+}
+
+section#plan {
+  --p:1;
+  background-image:
+    linear-gradient(
+      90deg,
+      canvas calc(var(--p) * 100%),
+      canvastext 0
+    );
+
+    
+
+  &.is-planning {
+    animation:--plannen-ani calc(var(--duration-plan) * 1s) linear forwards;
+  }
+}
+
+
+
+
+
+/**************/
+/* MARK: PLAY */
+/**************/
+
+@keyframes --playing-ani {
+  0% {
+    --p:1;
+  }
+  100% {
+    --p:0;
+  }
+}
+
+section#play {
+  background-image:
+    linear-gradient(
+      90deg,
+      canvastext calc(var(--p) * 100%),
+      canvas 0
+    );
+
+    
+
+  &.is-playing {
+    animation:--playing-ani calc(var(--duration-play) * 1s) linear forwards;
+  }
+}

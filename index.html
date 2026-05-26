@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dé CMD/FDND CSS Battle Clock</title>
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/favicon.svg">
+  
+</head>
+<body>
+
+  <main>
+    <section id="settings">
+      <form>
+        <h1 lang="en">CSS Battle clock</h1>
+        <label lang="en">
+          Battle 
+          <input type="text" name="battle" placeholder="XXX" maxlength="3" autocomplete="off" required>
+        </label>
+        <label>
+          Minuten
+          <input type="number" name="minutes" min="1" max="60" value="10">
+        </label>
+        <label>
+          Stem
+          <select name="voice"></select>
+        </label>
+        <button type="submit">OK</button>
+      </form>
+    </section>
+
+    <section id="plan" class="timer" inert>
+      <header>
+        <h2>Battle <strong>XXX</strong></h2>
+        <p>kijken, nog niet typen</p>
+      </header>
+      
+      <p><time><span>0</span><span>0</span><span>:</span><span>0</span><span>0</span></time></p>
+      <button lang="en" type="reset">reset</button>
+    </section>
+
+    <section id="play" class="timer" inert>
+      <header>
+        <h2>Battle <strong>XXX</strong></h2>
+        <p>typen, typen, typen</p>
+      </header>
+
+      <p><time><span>0</span><span>0</span><span>:</span><span>0</span><span>0</span></time></p>
+      <button lang="en" type="reset">reset</button>
+    </section>
+  </main>
+  <script defer src="script.js"></script>
+</body>
+</html>
