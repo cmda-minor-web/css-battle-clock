@@ -13,7 +13,10 @@ const readyTexts = [
   "Tingeling. Tingeling.",
   "Game over.",
   "Batterij 0%.",
-  "De ballon is leeg."
+  "De ballon is leeg.",
+  "Step away from the computer.",
+  "Ogen dicht. Snaveltjes toe.",
+  "Handen omhoog."
 ]
 
 // section: settings
