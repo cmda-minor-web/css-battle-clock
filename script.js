@@ -1,6 +1,6 @@
 let challengeNr
-let planTime = 60
-let playTime = 600
+let planTime = 10
+let playTime = 15
 
 let planTimer
 let playTimer
@@ -84,7 +84,7 @@ function startPlanning(e) {
 
   // handle input
   challengeNr =  formData.battle
-  playTime =  formData.minutes * 60
+  // playTime =  formData.minutes * 60
   voice = voices.find(voice => voice.name == formData.voice)
 
   // set pan and play time in CSS
