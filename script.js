@@ -57,7 +57,7 @@ function ini() {
     // get voices
     // filter on dutch and enhanced
     voices = speechSynthesis.getVoices().filter( voice => 
-      voice.lang.startsWith("nl") && voice.name.includes("Enhanced")
+      voice.lang.startsWith("nl") && (voice.name.includes("Enhanced") || voice.name.includes("verbeterd"))
     )
 
     // create option for each voice
