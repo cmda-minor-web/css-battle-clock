@@ -192,6 +192,10 @@ section#settings {
     align-items:baseline;
   }
 
+  label:has(select:empty) {
+    display:none;
+  }
+
   button {
     grid-column:1/-1;
   }

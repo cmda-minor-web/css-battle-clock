@@ -337,7 +337,9 @@ function speak(args) {
 
   // settings
   speech.lang = "nl"
-  speech.voice = voice
+  if (voice) {
+    speech.voice = voice
+  }
   speech.rate = rate;
   speech.pitch = pitch;
 
