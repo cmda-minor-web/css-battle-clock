@@ -198,7 +198,9 @@ function startPlayTimer() {
 
     switch (timer) {
       case 60:
-        speak("nog 1 minuut.")
+        speak({
+          text:`nog 1 minuut.`
+        })
         break
       case 5:
         speak({
